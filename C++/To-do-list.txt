@@ -1,0 +1,94 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class To_Do_List {
+public:
+    char tasks[100][100]; 
+    int n;
+    int status[100]; 
+
+   
+
+    void enter() {
+        cout << "Enter the number of tasks you want to enter: ";
+        cin >> n;
+        
+        for (int i = 0; i < n; i++) {
+            cout << "Enter task " << (i + 1) << ": ";
+            cin.ignore(); // To ignore the newline character left in the buffer
+            cin.getline(tasks[i], 100);
+
+            cout << "Enter status (1 = completed, 2 = pending) for task " << (i + 1) << ": ";
+            cin >> status[i];
+        }
+    }
+
+    void display() {
+        for (int i = 0; i < n; i++) {
+            cout << "Task " << (i + 1) << ": " << tasks[i] << " (Status: " << (status[i] == 1 ? "Completed" : "Pending") << ")" << endl;
+        }
+    }
+
+    void addTask() {
+        if (n >= 100) {
+            cout << "Task list is full. Cannot add more tasks." << endl;
+            return;
+        }
+        cout << "Enter the new task: ";
+        cin.ignore(); // To ignore the newline character left in the buffer
+        cin.getline(tasks[n], 100);
+
+        cout << "Enter status (1 = completed, 2 = pending) for the new task: ";
+        cin >> status[n];
+        n++;
+    }
+
+    void deleteTask() {
+        int taskNumber;
+        cout << "Enter the task number you want to delete: ";
+        cin >> taskNumber;
+        
+        if(taskNumber < 1 || taskNumber > n) {
+            cout << "Invalid task number!" << endl;
+            return;
+        }
+
+        for (int i = taskNumber - 1; i < n - 1; i++) {
+            strcpy(tasks[i], tasks[i + 1]);
+            status[i] = status[i + 1];
+        }
+        n--; 
+    }
+
+    void markTaskAsCompleted() {
+        int taskNumber;
+        cout << "Enter the task number you want to mark as completed: ";
+        cin >> taskNumber;
+        
+        if(taskNumber < 1 || taskNumber > n) {
+            cout << "Invalid task number!" << endl;
+            return;
+        }
+
+        status[taskNumber - 1] = 1; 
+        cout << "Task " << taskNumber << " marked as completed." << endl;
+    }
+};
+
+int main() {
+    To_Do_List l;
+    l.enter();
+    l.display();
+
+    l.addTask();
+    l.display();
+
+    l.markTaskAsCompleted();
+    l.display();
+
+    l.deleteTask();
+    l.display();
+
+    return 0;
+}

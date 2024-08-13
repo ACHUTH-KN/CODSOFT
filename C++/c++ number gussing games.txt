@@ -1,0 +1,29 @@
+
+#include <iostream>
+using namespace std;
+int main(){
+    int number;
+    int guess;
+    int tries;
+    srand(time(NULL));
+    number=(rand()%100)+1;
+    cout<<"~~~~~~~~~~~~~~~~~~~~NUMBERGUESSINGGAME~~~~~~~~~~~~~~~~";
+    do{
+        cout<<"\nEnter your guessed number btw [1-100]";
+        cin>>guess;
+        tries++;
+    
+      if(guess>number){
+        cout<<"too high\n"; 
+        }
+      else if(guess<number){
+        cout<<"Too low!\n";
+        
+    }
+      else{
+        cout<<"Correct "<<"number of tries you took"<<tries<<'\n';
+    }
+        
+    }while(guess!=number);
+    return 0;
+}s

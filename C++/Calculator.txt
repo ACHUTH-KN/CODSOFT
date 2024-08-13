@@ -1,0 +1,118 @@
+#include<iostream>
+using namespace std;
+class Calculator{
+    public:
+    float num1,num2;
+    
+    float addition(){
+        return num1+num2;
+        
+        
+    }float subtraction(){
+       return num1-num2;
+    }
+    float multiplication(){
+        return  num1*num2;
+    }
+    float division(){
+        return  num1/num2;
+    }
+    void display(){
+        cout<<"Enter the first number";
+    cin>>num1;
+    cout<<"Enter the second number";
+    cin>>num2;
+    }
+    };
+    int main(){
+        int choice;
+        cout<<"**********************SIMPLE CALCULATOR*************"<<endl;
+    Calculator c;
+  c.display();
+    cout<<"press 1 for  ADDITION"<<endl;
+    cout<<"press 2 for SUBTRACTION"<<endl;
+    cout<<"press 3 for MULTIPLICATION"<<endl;
+    cout<<"press 4 for DIVISION"<<endl;
+
+    cout<<"Enter your choice";
+    cin>>choice;
+    switch(choice){
+        case 1:{
+            cout<<"Addition of a number is"<<c.addition();
+        }break;
+        case 2:{
+        cout<<"subtraction of a number is"<<c.subtraction();}
+        break;
+        case 3:
+        cout<<"Multiplication of a number is"<<c.multiplication();
+        break;
+        case 4:
+        cout<<"Division of a number is"<<c.division();
+        break;
+    default:
+    cout<<"Wrong choice";
+    break;
+    }
+    return 0;
+    
+        }
+
+
+
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class To_Do_List {
+public:
+    char tasks[100][100]; // 2D array to store multiple tasks
+    int n;
+
+    void enter() {
+        cout << "Enter the number of tasks you want to enter: ";
+        cin >> n;
+        cin.ignore(); // Ignore newline character after entering the number
+        
+        for (int i = 0; i < n; i++) {
+            cout << "Enter task " << (i + 1) << ": ";
+            cin.getline(tasks[i], 100); // Use getline to capture the entire task
+        }
+    }
+
+    void display() {
+        for (int i = 0; i < n; i++) {
+            cout << "Task " << (i + 1) << ": " << tasks[i] << endl;
+        }
+    }
+
+    void deleteTask() {
+        int taskNumber;
+        cout << "Enter the task number you want to delete: ";
+        cin >> taskNumber;
+        
+        if(taskNumber < 1 || taskNumber > n) {
+            cout << "Invalid task number!" << endl;
+            return;
+        }
+
+        // Shift tasks to fill the gap
+        for (int i = taskNumber - 1; i < n - 1; i++) {
+            strcpy(tasks[i], tasks[i + 1]);
+        }
+        n--; // Decrease the number of tasks
+    }
+};
+
+int main() {
+    To_Do_List l;
+    l.enter();
+    l.display();
+    l.deleteTask();
+    l.display();
+    
+    return 0;
+}
+
+   
